@@ -26,6 +26,12 @@ const translation = {
     "ErrorCode": "Foutcode",
     "Okay": "Oké",
     "GoBack": "Ga terug",
+    "Intro": {
+      "Welcome": "Welkom bij de patiënten app van het MNNU!",
+      "Continue": "Swipe om door te gaan!",
+      "Info1": "Deze app is gemaakt om makkelijk uw data te beheren.",
+      "Info2": "Ook kunt u verzoeken van zorgverleners accepteren zodat u op een veilige manier geholpen kunt worden.",
+    },
   },
   "Language": {
     "English": "Engels",
