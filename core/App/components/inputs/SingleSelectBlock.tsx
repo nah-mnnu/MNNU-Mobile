@@ -45,7 +45,7 @@ const SingleSelectBlock: React.FC<Props> = ({ selection, onSelect, initialSelect
     <View style={styles.container}>
       {selection.map((item) => (
         <TouchableOpacity key={item.id} style={styles.row} onPress={() => handleSelect(item)}>
-          <Text style={Inputs.singleSelectText}>{item.value}</Text> // TODO? styles.button
+          <Text style={Inputs.singleSelectText}>{item.value}</Text>
           {item.id === selected.id ? <Icon name={'check'} size={25} color={Inputs.singleSelectIcon.color} /> : null}
         </TouchableOpacity>
       ))}
