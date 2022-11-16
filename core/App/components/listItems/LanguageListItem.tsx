@@ -1,10 +1,9 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { StyleSheet, Text, View } from 'react-native'
-import { SafeAreaScrollView } from '../'
-import SingleSelectBlock, { BlockSelection } from './../inputs/SingleSelectBlock'
+import {useTranslation} from 'react-i18next'
+import SafeAreaScrollView from '../views/SafeAreaScrollView';
+import SingleSelectBlock, {BlockSelection} from './../inputs/SingleSelectBlock'
 
-import { Locales, storeLanguage } from '../../localization'
+import {Locales, storeLanguage} from '../../localization'
 
 const LanguageListItem: React.FC = ({ }) => {
     const { t, i18n } = useTranslation()
