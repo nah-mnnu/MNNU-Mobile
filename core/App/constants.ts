@@ -1,4 +1,4 @@
-export const defaultLanguage = 'en'
+export const defaultLanguage = 'nl'
 export const dateIntFormat = 'YYYYMMDD'
 export const lengthOfhiddenAttributes = 10
 

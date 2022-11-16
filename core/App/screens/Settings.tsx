@@ -29,8 +29,9 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   const { settings } = useConfiguration()
   const languages = [
     { id: Locales.en, value: t('Language.English') },
-    { id: Locales.fr, value: t('Language.French') },
-    { id: Locales.ptBr, value: t('Language.Portuguese') },
+		{ id: Locales.nl, value: t('Language.Dutch') },
+//     { id: Locales.fr, value: t('Language.French') },
+//     { id: Locales.ptBr, value: t('Language.Portuguese') },
   ]
 
   const styles = StyleSheet.create({
