@@ -127,16 +127,16 @@ const languagePage = (theme: Theme) => {
   )
 }
 
-const guides: Array<{ image: React.FC<SvgProps>; title: string; body: string }> = [
+const guides: Array<{ image: React.FC<SvgProps>; title: any; body: string }> = [
   {
-    image: CredentialList,
-    title: 'Lorem ipsum dolor sit amet',
-    body: 'Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus.',
+    image: Begin,
+    title: t('Global.Intro.Welcome'),
+    body: t('Global.Intro.Continue'),
   },
   {
-    image: ScanShare,
-    title: 'Excepteur sint occaecat ',
-    body: 'Mollis aliquam ut porttitor leo a diam sollicitudin tempor.',
+    image: Request,
+    title: t('Global.Intro.Info1'),
+    body: t('Global.Intro.Info2')
   },
 ]
 

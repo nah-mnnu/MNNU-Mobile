@@ -32,6 +32,12 @@ const translation = {
     "Biometrics": "Biometrics",
     "On" : "On",
     "Off": "Off",
+    "Intro": {
+      "Welcome": "Welcome to the patient app of the MNNU!",
+      "Continue": "Swipe to continue!",
+      "Info1": "This app has been created for easy control of your data",
+      "Info2": "You can also accept requests of healthcare providers so that you can be helped in a safe way",
+    },
   },
   "Language": {
     "English": "English",
