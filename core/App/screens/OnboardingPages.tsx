@@ -9,6 +9,8 @@ import SecureImage from '../assets/img/secure-image.svg'
 import Button, { ButtonType } from '../components/buttons/Button'
 import { GenericFn } from '../types/fn'
 import { testIdWithKey } from '../utils/testable'
+import LanguageListItem from '../components/listItems/LanguageListItem'
+import {Theme} from '../theme'
 
 import { OnboardingStyleSheet } from './Onboarding'
 
@@ -116,6 +118,20 @@ const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   )
 }
 
+const languagePage = (theme: Theme) => {
+  const defaultStyle = createStyles(theme)
+  return (
+    <>
+      <View style={{ marginLeft: 20, marginRight: 20, marginTop: 30 }}>
+        <Text style={[defaultStyle.headerText, { fontSize: 18 }]}>Choose language / Kies taal</Text>
+        <Text style={[defaultStyle.bodyText, { marginTop: 20 }]}>
+        <LanguageListItem/>
+        </Text>
+      </View>
+    </>
+  )
+}
+
 const guides: Array<{ image: React.FC<SvgProps>; title: string; body: string }> = [
   {
     image: CredentialList,
@@ -149,6 +165,7 @@ const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, 
 
 const OnboardingPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any): Array<Element> => {
   return [
+    languagePage(OnboardingTheme),
     ...guides.map((g) => createPageWith(g.image, g.title, g.body, OnboardingTheme)),
     customPages(onTutorialCompleted, OnboardingTheme),
   ]
