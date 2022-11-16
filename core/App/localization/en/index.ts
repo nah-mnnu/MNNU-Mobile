@@ -71,6 +71,7 @@ const translation = {
     "English": "English",
     "French": "French",
     "Portuguese": "Portuguese",
+    "Dutch": "Dutch"
   },
   "Error": {
     "Unknown": "Unknown Error",
