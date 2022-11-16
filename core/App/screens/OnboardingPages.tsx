@@ -12,8 +12,6 @@ import Request from '../assets/img/MNNU/request.svg'
 import Opening from '../assets/img/MNNU/opening.svg'
 import {OnboardingStyleSheet} from './Onboarding'
 
-const {t} = useTranslation()
-
 export const createCarouselStyle = (OnboardingTheme: any): OnboardingStyleSheet => {
   return StyleSheet.create({
     container: {
@@ -90,6 +88,8 @@ const createImageDisplayOptions = (OnboardingTheme: any) => {
 const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   const styles = createStyles(OnboardingTheme)
   const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
+  const {t} = useTranslation()
+
   return (
     <>
       <ScrollView style={{padding: 20}}>
@@ -127,19 +127,6 @@ const languagePage = (theme: Theme) => {
   )
 }
 
-const guides: Array<{ image: React.FC<SvgProps>; title: any; body: string }> = [
-  {
-    image: Begin,
-    title: t('Global.Intro.Welcome'),
-    body: t('Global.Intro.Continue'),
-  },
-  {
-    image: Request,
-    title: t('Global.Intro.Info1'),
-    body: t('Global.Intro.Info2')
-  },
-]
-
 const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, OnboardingTheme: any) => {
   const styles = createStyles(OnboardingTheme)
   const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
@@ -159,6 +146,21 @@ const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, 
 }
 
 const OnboardingPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any): Array<Element> => {
+  const {t} = useTranslation()
+  
+  const guides: Array<{ image: React.FC<SvgProps>; title: any; body: string }> = [
+    {
+      image: Begin,
+      title: t('Global.Intro.Welcome'),
+      body: t('Global.Intro.Continue'),
+    },
+    {
+      image: Request,
+      title: t('Global.Intro.Info1'),
+      body: t('Global.Intro.Info2')
+    },
+  ]
+
   return [
     languagePage(OnboardingTheme),
     ...guides.map((g) => createPageWith(g.image, g.title, g.body, OnboardingTheme)),
