@@ -78,6 +78,7 @@ interface NotificationColors {
   infoBorder: string
   infoIcon: string
   infoText: string
+  buttonText: string
   warn: string
   warnBorder: string
   warnIcon: string
@@ -125,7 +126,7 @@ const BrandColors: BrandColors = {
   secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
   highlight: '#FCBA19',
   primaryBackground: '#FFFFFF',
-  secondaryBackground: '#313132',
+  secondaryBackground: '#073763',
   modalPrimaryBackground: '#000000',
   modalSecondaryBackground: '#313132',
   link: '#FFFFFF',
@@ -146,6 +147,7 @@ const NotificationColors: NotificationColors = {
   infoBorder: '#0099FF',
   infoIcon: '#0099FF',
   infoText: '#000000',
+  buttonText: '#ffffff',
   warn: '#313132',
   warnBorder: '#FCBA19',
   warnIcon: '#FCBA19',
