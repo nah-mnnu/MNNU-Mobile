@@ -31,6 +31,8 @@ const translation = {
       "Continue": "Swipe om door te gaan!",
       "Info1": "Deze app is gemaakt om makkelijk uw data te beheren.",
       "Info2": "Ook kunt u verzoeken van zorgverleners accepteren zodat u op een veilige manier geholpen kunt worden.",
+      "LetsGetStarted": "Laten we beginnen!",
+      "GetStarted": "Beginnen",
     },
   },
   "Language": {
