@@ -94,7 +94,7 @@ const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
     <>
       <ScrollView style={{padding: 20}}>
         <View style={{marginLeft: 20, marginRight: 20, marginTop: 100}}>
-          <Text style={[styles.headerText, {fontSize: 30}]}>Laten we beginnen!</Text>
+          <Text style={[styles.headerText, {fontSize: 30}]}>{t('Global.Intro.LetsGetStarted')}</Text>
           <View style={{alignItems: 'center'}}>
             <Opening {...imageDisplayOptions} />
           </View>
@@ -102,8 +102,8 @@ const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
       </ScrollView>
       <View style={{marginTop: 'auto', margin: 20}}>
         <Button
-          title={t('Global.GetStarted')}
-          accessibilityLabel={t('Global.GetStarted')}
+          title={t('Global.Intro.GetStarted')}
+          accessibilityLabel={t('Global.Intro.GetStarted')}
           testID={testIdWithKey('GetStarted')}
           onPress={onTutorialCompleted}
           buttonType={ButtonType.Primary}
