@@ -149,6 +149,7 @@ const translation = {
   },
   "Contacts": {
     "EmptyList": "Your wallet is empty. Your connected contacts will be added here.",
+    "TypeHere": "Type Message Here",
   },
   "ContactDetails": {
     "Created": "Created",
@@ -169,8 +170,9 @@ const translation = {
     "TermsAndConditions": "Terms and conditions",
     "RemoveFromWallet": "Remove from wallet",
     "Revoked": "Revoked",
-    "CredentialRevokedMessageTitle": "This credential is revoked",
+    "CredentialRevokedMessageTitle": "Revoked On ",
     "CredentialRevokedMessageBody": "This credential may no longer work for some proof requests. You will need to update the credential with the issuer.",
+    "NewRevoked": "Credential Was Revoked",
     "RemoveTitle": "Remove credential from your wallet",
     "RemoveCaption": "You will lose your ability to prove the information on this credential with this Wallet.",
     "CredentialNotFound": "Credential not found",
@@ -331,6 +333,7 @@ const translation = {
     "Biometry": "Biometrics",
     "Developer": "Developer",
     "ChangePin": "Change PIN",
+    "CommonDecline": "Decline",
   },
   "Loading": {
     "TakingTooLong": "This is taking longer than usual. You can return to home or continue waiting.",
