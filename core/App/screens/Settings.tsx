@@ -1,5 +1,5 @@
 import { StackScreenProps } from '@react-navigation/stack'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SectionList, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import { getVersion, getBuildNumber } from 'react-native-device-info'
@@ -24,7 +24,6 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   const { t, i18n } = useTranslation()
   const [store, dispatch] = useStore()
   const developerOptionCount = useRef(0)
-  const [developerModeTriggerDisabled, setDeveloperModeTriggerDisabled] = useState<boolean>(false)
   const { SettingsTheme, TextTheme, ColorPallet, Assets } = useTheme()
   const { settings } = useConfiguration()
   const languages = [
@@ -77,7 +76,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
 
   const incrementDeveloperMenuCounter = () => {
     if (developerOptionCount.current >= touchCountToEnableBiometrics) {
-      setDeveloperModeTriggerDisabled(true)
+      developerOptionCount.current = 0
       dispatch({
         type: DispatchAction.ENABLE_DEVELOPER_MODE,
         payload: [true],
@@ -127,13 +126,6 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           testID: testIdWithKey('Biometrics'),
           onPress: () => navigation.navigate(Screens.UseBiometry),
         },
-        // TODO: Need to resolve methods for changing PIN
-        // {
-        //   title: t('PinCreate.ChangePIN'),
-        //   accessibilityLabel: t('PinCreate.ChangePIN'),
-        //   testID: testIdWithKey('ChangePIN'),
-        //   onPress: () => navigation.navigate(Screens.RecreatePin),
-        // },
         {
           title: t('Settings.Language'),
           value: currentLanguage,
@@ -190,7 +182,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   )
 
   return (
-    <SafeAreaView>
+    <SafeAreaView edges={['bottom', 'left', 'right']}>
       <View style={styles.container}>
         <SectionList
           renderItem={({ item: { title, value, onPress } }) => (
@@ -215,7 +207,10 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           SectionSeparatorComponent={() => <View style={[styles.sectionSeparator]}></View>}
           ListFooterComponent={() => (
             <View style={styles.footer}>
-              <TouchableWithoutFeedback onPress={incrementDeveloperMenuCounter} disabled={developerModeTriggerDisabled}>
+              <TouchableWithoutFeedback
+                onPress={incrementDeveloperMenuCounter}
+                disabled={store.preferences.developerModeEnabled}
+              >
                 <View>
                   <Text style={TextTheme.normal} testID={testIdWithKey('Version')}>
                     {`${t('Settings.Version')} ${getVersion()} ${t('Settings.Build')} (${getBuildNumber()})`}
@@ -226,6 +221,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
             </View>
           )}
           sections={settingsSections}
+          stickySectionHeadersEnabled={false}
         ></SectionList>
       </View>
     </SafeAreaView>

@@ -4,8 +4,6 @@ import React from 'react'
 import LoadingModal from '../../App/components/modals/LoadingModal'
 import { testIdWithKey } from '../../App/utils/testable'
 
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
-
 describe('displays loading screen', () => {
   test('renders correctly', () => {
     const tree = render(<LoadingModal />)
@@ -14,9 +12,9 @@ describe('displays loading screen', () => {
   })
 
   test('contains testIDs', () => {
-    const tree = render(<LoadingModal />)
+    const { getByTestId } = render(<LoadingModal />)
 
-    const loadingActivityIndicatorID = tree.getByTestId(testIdWithKey('LoadingActivityIndicator'))
+    const loadingActivityIndicatorID = getByTestId(testIdWithKey('LoadingActivityIndicator'))
 
     expect(loadingActivityIndicatorID).not.toBeNull()
   })
