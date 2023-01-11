@@ -592,7 +592,7 @@ export const Assets = {
       resizeMode: 'contain',
     },
     logoSecondary: {
-      src: require('./assets/img/logo-large.png'),
+      src: require('./assets/img/MNNU/logo.png'),
       aspectRatio: 1,
       height: '33%',
       width: '33%',
