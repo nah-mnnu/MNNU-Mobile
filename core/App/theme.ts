@@ -575,7 +575,7 @@ const PINInputTheme = {
     color: ColorPallet.grayscale.white,
   },
   icon: {
-    color: ColorPallet.grayscale.white,
+    color: ColorPallet.brand.primary,
   },
 }
 
