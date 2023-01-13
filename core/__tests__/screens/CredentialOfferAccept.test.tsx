@@ -7,9 +7,8 @@ import React from 'react'
 
 import CredentialOfferAccept from '../../App/screens/CredentialOfferAccept'
 import { testIdWithKey } from '../../App/utils/testable'
-import timeTravel from '../util/timetravel'
+import timeTravel from '../helpers/timetravel'
 
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 jest.mock('@react-navigation/core', () => {
   return require('../../__mocks__/custom/@react-navigation/core')
 })
@@ -32,7 +31,6 @@ describe('displays a credential accept screen', () => {
     const tree = render(<CredentialOfferAccept visible={true} credentialId={credentialId} />)
 
     const doneButton = tree.queryByTestId('Done')
-    const backToHomeButton = tree.queryByTestId(testIdWithKey('BackToHome'))
 
     expect(tree).toMatchSnapshot()
     expect(doneButton).toBeNull()

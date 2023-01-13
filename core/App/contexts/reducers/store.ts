@@ -15,7 +15,7 @@ enum OnboardingDispatchAction {
   ONBOARDING_UPDATED = 'onboarding/onboardingStateLoaded',
   DID_COMPLETE_TUTORIAL = 'onboarding/didCompleteTutorial',
   DID_AGREE_TO_TERMS = 'onboarding/didAgreeToTerms',
-  DID_CREATE_PIN = 'onboarding/didCreatePin',
+  DID_CREATE_PIN = 'onboarding/didCreatePIN',
 }
 
 enum ErrorDispatchAction {
@@ -38,11 +38,16 @@ enum PrivacyDispatchAction {
 enum PreferencesDispatchAction {
   ENABLE_DEVELOPER_MODE = 'preferences/enableDeveloperMode',
   USE_BIOMETRY = 'preferences/useBiometry',
+  BIOMETRY_PREFERENCES_UPDATED = 'preferences/biometryPreferencesUpdated',
   PREFERENCES_UPDATED = 'preferences/preferencesStateLoaded',
 }
 
 enum AuthenticationDispatchAction {
   DID_AUTHENTICATE = 'authentication/didAuthenticate',
+}
+
+enum DeepLinkDispatchAction {
+  ACTIVE_DEEP_LINK = 'deepLink/activeDeepLink',
 }
 
 export type DispatchAction =
@@ -53,6 +58,7 @@ export type DispatchAction =
   | LockoutDispatchAction
   | PreferencesDispatchAction
   | AuthenticationDispatchAction
+  | DeepLinkDispatchAction
 
 export const DispatchAction = {
   ...OnboardingDispatchAction,
@@ -62,14 +68,15 @@ export const DispatchAction = {
   ...LockoutDispatchAction,
   ...PreferencesDispatchAction,
   ...AuthenticationDispatchAction,
+  ...DeepLinkDispatchAction,
 }
 
-export interface ReducerAction {
-  type: DispatchAction
+export interface ReducerAction<R> {
+  type: R
   payload?: Array<any>
 }
 
-export const reducer = <S extends State>(state: S, action: ReducerAction): S => {
+export const reducer = <S extends State>(state: S, action: ReducerAction<DispatchAction>): S => {
   switch (action.type) {
     case PreferencesDispatchAction.ENABLE_DEVELOPER_MODE: {
       const choice = (action?.payload ?? []).pop() ?? false
@@ -102,6 +109,14 @@ export const reducer = <S extends State>(state: S, action: ReducerAction): S => 
       AsyncStorage.setItem(LocalStorageKeys.Preferences, JSON.stringify(preferences))
 
       return newState
+    }
+    case PreferencesDispatchAction.BIOMETRY_PREFERENCES_UPDATED: {
+      const updatePending = (action?.payload ?? []).pop() ?? false
+      const preferences = { ...state.preferences, biometryPreferencesUpdated: updatePending }
+      return {
+        ...state,
+        preferences,
+      }
     }
     case PreferencesDispatchAction.PREFERENCES_UPDATED: {
       const preferences: PreferencesState = (action?.payload || []).pop()
@@ -206,6 +221,13 @@ export const reducer = <S extends State>(state: S, action: ReducerAction): S => 
       return {
         ...state,
         error: null,
+      }
+    }
+    case DeepLinkDispatchAction.ACTIVE_DEEP_LINK: {
+      const value = (action?.payload || []).pop()
+      return {
+        ...state,
+        ...{ deepLink: { activeDeepLink: value } },
       }
     }
     default:

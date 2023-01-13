@@ -1,5 +1,5 @@
 import {
-  CredentialExchangeRecord as CredentialRecord,
+  CredentialExchangeRecord,
   CredentialState,
   IndyCredentialInfo,
   INDY_PROOF_REQUEST_ATTACHMENT_ID,
@@ -12,14 +12,17 @@ import { Attachment, AttachmentData } from '@aries-framework/core/build/decorato
 import { useAgent, useProofById } from '@aries-framework/react-hooks'
 import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock'
 import { useNavigation } from '@react-navigation/core'
+import '@testing-library/jest-native/extend-expect'
 import { cleanup, render, waitFor } from '@testing-library/react-native'
 import React from 'react'
 
-import { NetworkProvider } from '../../App/contexts/network'
+import { NetworkContext, NetworkProvider } from '../../App/contexts/network'
 import ProofRequest from '../../App/screens/ProofRequest'
 import { testIdWithKey } from '../../App/utils/testable'
-import timeTravel from '../util/timetravel'
+import networkContext from '../contexts/network'
+import timeTravel from '../helpers/timetravel'
 
+jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter')
 jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo)
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 jest.mock('@react-navigation/core', () => {
@@ -59,7 +62,7 @@ describe('displays a proof request screen', () => {
     const testTime = '2022-02-11 20:00:18.180718'
 
     const testCredentials = [
-      new CredentialRecord({
+      new CredentialExchangeRecord({
         threadId: '1',
         state: CredentialState.Done,
         credentialAttributes: [
@@ -74,6 +77,7 @@ describe('displays a proof request screen', () => {
             toJSON: jest.fn(),
           },
         ],
+        protocolVersion: 'v1',
       }),
     ]
 
@@ -150,13 +154,6 @@ describe('displays a proof request screen', () => {
     })
 
     test('loading screen displays', async () => {
-      // const { agent } = useAgent()
-
-      // // @ts-ignore
-      // agent?.proofs.getRequestedCredentialsForProofRequest.mockResolvedValue({
-      //   requestedAttributes: { ...testRetrievedCredentials.requestedAttributes, time: [] },
-      // })
-
       const tree = render(
         <NetworkProvider>
           <ProofRequest navigation={useNavigation()} route={{ params: { proofId: testProofRequest.id } } as any} />
@@ -222,7 +219,7 @@ describe('displays a proof request screen', () => {
       expect(declineButton).not.toBeNull()
     })
 
-    test.skip('displays a proof request with one or more claims not available', async () => {
+    test('displays a proof request with one or more claims not available', async () => {
       const { agent } = useAgent()
 
       // @ts-ignore
@@ -231,44 +228,18 @@ describe('displays a proof request screen', () => {
       })
 
       const tree = render(
-        <ProofRequest navigation={useNavigation()} route={{ params: { proofId: testProofRequest.id } } as any} />
+        <NetworkContext.Provider value={networkContext}>
+          <ProofRequest navigation={useNavigation()} route={{ params: { proofId: testProofRequest.id } } as any} />
+        </NetworkContext.Provider>
       )
 
       await waitFor(() => {
         timeTravel(1000)
       })
 
-      // const contact = getByText('ContactDetails.AContact', { exact: false })
-      // const missingInfo = getByText('ProofRequest.IsRequestingSomethingYouDontHaveAvailable', { exact: false })
-      // const missingClaim = queryByText('ProofRequest.NotAvailableInYourWallet', { exact: false })
-      // const emailLabel = getByText(/Email/, { exact: false })
-      // const emailValue = getByText(testEmail)
-      // const timeLabel = getByText(/Time/, { exact: false })
-      // const timeValue = queryByText(testTime, { exact: false })
-      // const detailsLinks = getAllByText('ProofRequest.Details', { exact: false })
-      // const shareButton = queryByText('Global.Share', { exact: false })
-      // const declineButton = getByText('Global.Decline', { exact: false })
       const shareButton = tree.getByTestId(testIdWithKey('Share'))
       const declineButton = tree.getByTestId(testIdWithKey('Decline'))
-      // const recordLoading = tree.getByTestId(testIdWithKey('RecordLoading'))
 
-      // expect(tree).toMatchSnapshot()
-
-      // expect(contact).not.toBeNull()
-      // expect(contact).toBeTruthy()
-      // expect(missingInfo).not.toBeNull()
-      // expect(missingInfo).toBeTruthy()
-      // expect(emailLabel).not.toBeNull()
-      // expect(emailLabel).toBeTruthy()
-      // expect(emailValue).not.toBeNull()
-      // expect(emailValue).toBeTruthy()
-      // expect(timeLabel).not.toBeNull()
-      // expect(timeLabel).toBeTruthy()
-      // expect(timeValue).toBeNull()
-      // expect(missingClaim).not.toBeNull()
-      // expect(missingClaim).toBeTruthy()
-      // expect(detailsLinks.length).toBe(1)
-      // expect(recordLoading).not.toBeNull()
       expect(shareButton).not.toBeNull()
       expect(shareButton).toBeDisabled()
       expect(declineButton).not.toBeNull()

@@ -1,7 +1,9 @@
 import defaultIndyLedgers from '../configs/ledgers/indy'
 
+import EmptyList from './components/misc/EmptyList'
 import Record from './components/record/Record'
 import HomeContentView from './components/views/HomeContentView'
+import { PINRules } from './constants'
 import { ConfigurationContext } from './contexts/configuration'
 import Developer from './screens/Developer'
 import OnboardingPages from './screens/OnboardingPages'
@@ -17,10 +19,14 @@ export const defaultConfiguration: ConfigurationContext = {
   terms: Terms,
   developer: Developer,
   homeContentView: HomeContentView,
+  credentialListHeaderRight: () => null,
+  credentialListOptions: () => null,
+  credentialEmptyList: EmptyList,
   OCABundle: new oca.DefaultOCABundleResolver().loadDefaultBundles(),
   scan: Scan,
   useBiometry: UseBiometry,
   record: Record,
+  PINSecurity: { rules: PINRules, displayHelper: false },
   indyLedgers: defaultIndyLedgers,
   settings: [],
 }

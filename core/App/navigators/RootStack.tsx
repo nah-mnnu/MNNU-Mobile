@@ -11,11 +11,12 @@ import { useConfiguration } from '../contexts/configuration'
 import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
 import { useTheme } from '../contexts/theme'
+import { useDeepLinks } from '../hooks/deep-links'
 import AttemptLockout from '../screens/AttemptLockout'
 import Onboarding from '../screens/Onboarding'
 import { createCarouselStyle } from '../screens/OnboardingPages'
-import PinCreate from '../screens/PinCreate'
-import PinEnter from '../screens/PinEnter'
+import PINCreate from '../screens/PINCreate'
+import PINEnter from '../screens/PINEnter'
 import { AuthenticateStackParams, Screens, Stacks } from '../types/navigators'
 
 import ConnectStack from './ConnectStack'
@@ -40,6 +41,7 @@ const RootStack: React.FC = () => {
   const defaultStackOptions = createDefaultStackOptions(theme)
   const OnboardingTheme = theme.OnboardingTheme
   const { pages, terms, splash, useBiometry } = useConfiguration()
+  useDeepLinks()
 
   const lockoutUser = async () => {
     if (agent && state.authentication.didAuthenticate) {
@@ -104,8 +106,16 @@ const RootStack: React.FC = () => {
     return (
       <Stack.Navigator initialRouteName={Screens.Splash} screenOptions={{ ...defaultStackOptions, headerShown: false }}>
         <Stack.Screen name={Screens.Splash} component={splash} />
-        <Stack.Screen name={Screens.EnterPin}>
-          {(props) => <PinEnter {...props} setAuthenticated={onAuthenticated} />}
+        <Stack.Screen
+          name={Screens.EnterPIN}
+          options={() => ({
+            title: t('Screens.EnterPIN'),
+            headerShown: true,
+            headerLeft: () => false,
+            rightLeft: () => false,
+          })}
+        >
+          {(props) => <PINEnter {...props} setAuthenticated={onAuthenticated} />}
         </Stack.Screen>
         <Stack.Screen
           name={Screens.AttemptLockout}
@@ -169,8 +179,16 @@ const RootStack: React.FC = () => {
           })}
           component={terms}
         />
-        <Stack.Screen name={Screens.CreatePin}>
-          {(props) => <PinCreate {...props} setAuthenticated={onAuthenticated} />}
+        <Stack.Screen
+          name={Screens.CreatePIN}
+          options={() => ({
+            title: t('Screens.CreatePIN'),
+            headerShown: true,
+            headerLeft: () => false,
+            rightLeft: () => false,
+          })}
+        >
+          {(props) => <PINCreate {...props} setAuthenticated={onAuthenticated} />}
         </Stack.Screen>
         <Stack.Screen
           name={Screens.UseBiometry}

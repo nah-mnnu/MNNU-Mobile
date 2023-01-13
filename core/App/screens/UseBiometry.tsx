@@ -4,14 +4,16 @@ import { StyleSheet, Text, View, Modal, Switch, StatusBar, Platform, ScrollView 
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import Biometrics from '../assets/img/biometrics.svg'
+import ButtonLoading from '../components/animated/ButtonLoading'
 import Button, { ButtonType } from '../components/buttons/Button'
 import { useAuth } from '../contexts/auth'
 import { DispatchAction } from '../contexts/reducers/store'
 import { useStore } from '../contexts/store'
 import { useTheme } from '../contexts/theme'
-import PinEnter, { PinEntryUsage } from '../screens/PinEnter'
 import { statusBarStyleForColor, StatusBarStyles } from '../utils/luminance'
 import { testIdWithKey } from '../utils/testable'
+
+import PINEnter, { PINEntryUsage } from './PINEnter'
 
 enum UseBiometryUsage {
   InitialSetup,
@@ -25,7 +27,7 @@ const UseBiometry: React.FC = () => {
   const [biometryAvailable, setBiometryAvailable] = useState(false)
   const [biometryEnabled, setBiometryEnabled] = useState(store.preferences.useBiometry)
   const [continueEnabled, setContinueEnabled] = useState(true)
-  const [canSeeCheckPin, setCanSeeCheckPin] = useState<boolean>(false)
+  const [canSeeCheckPIN, setCanSeeCheckPIN] = useState<boolean>(false)
   const { ColorPallet, TextTheme } = useTheme()
   const screenUsage = store.onboarding.didConsiderBiometry
     ? UseBiometryUsage.ToggleOnOff
@@ -87,8 +89,11 @@ const UseBiometry: React.FC = () => {
     // If the user is toggling biometrics on/off they need
     // to first authenticate before this action is accepted
     if (screenUsage === UseBiometryUsage.ToggleOnOff) {
-      setCanSeeCheckPin(true)
-
+      setCanSeeCheckPIN(true)
+      dispatch({
+        type: DispatchAction.BIOMETRY_PREFERENCES_UPDATED,
+        payload: [true],
+      })
       return
     }
 
@@ -99,9 +104,13 @@ const UseBiometry: React.FC = () => {
     // If successfully authenticated the toggle may proceed.
     if (status) {
       setBiometryEnabled((previousState) => !previousState)
+      dispatch({
+        type: DispatchAction.BIOMETRY_PREFERENCES_UPDATED,
+        payload: [false],
+      })
     }
 
-    setCanSeeCheckPin(false)
+    setCanSeeCheckPIN(false)
   }
 
   return (
@@ -161,11 +170,13 @@ const UseBiometry: React.FC = () => {
             onPress={continueTouched}
             buttonType={ButtonType.Primary}
             disabled={!continueEnabled}
-          />
+          >
+            {!continueEnabled && <ButtonLoading />}
+          </Button>
         )}
       </View>
-      <Modal visible={canSeeCheckPin} transparent={true} animationType={'slide'}>
-        <PinEnter pinEntryUsage={PinEntryUsage.PinCheck} setAuthenticated={onAuthenticationComplete} />
+      <Modal visible={canSeeCheckPIN} transparent={true} animationType={'slide'}>
+        <PINEnter usage={PINEntryUsage.PINCheck} setAuthenticated={onAuthenticationComplete} />
       </Modal>
     </SafeAreaView>
   )

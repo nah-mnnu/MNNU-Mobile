@@ -79,7 +79,27 @@ const translation = {
     "Title": "Política de Privacidade",
     "CameraDisclosure": "A câmera é usada para escanear QR Codes para processamento imediato no dispositivo. Nenhuma informação sobre as imagens é armazenada, usada para análise, ou compartilhada.",
   },
-  "PinCreate": {
+  "PINCreate": {
+    "Message": {
+      "CrossPatternValidation": "A pattern of cross was detected in your PIN. Please try again. (PT-BR)",
+      "OddOrEvenSequenceValidation": "An odd or even sequence was detected in your PIN. Please try again. (PT-BR)",
+      "NoRepetitionOfTheSameNumbersValidation": "The PIN can't have a repetition of the same digit. Please try again. (PT-BR)",
+      "NoRepetitionOfTheTwoSameNumbersValidation": "A repeated two-digit sequence was detected in your PIN. Please try again. (PT-BR)",
+      "NoSeriesOfNumbersValidation": "A series was detected in your PIN. Please try again. (PT-BR)",
+      "PINOnlyContainDigitsValidation": "Your PIN needs to only contain digits. Please try again. (PT-BR)",
+      "PINTooShortValidation": "Your PIN is too short. Please try again. (PT-BR)",
+      "PINTooLongValidation": "Your PIN is too long. Please try again. (PT-BR)",
+    },
+    "Helper": {
+      "CrossPatternValidation": "Does not contain a pattern of cross. (PT-BR)",
+      "OddOrEvenSequenceValidation": "Does not contain an odd or even sequence. (PT-BR)",
+      "NoRepetitionOfTheSameNumbersValidation": "Does not contain the same repeating number. (PT-BR)",
+      "NoRepetitionOfTheTwoSameNumbersValidation": "Does not contain repeating two-digit sequence. (PT-BR)",
+      "NoSeriesOfNumbersValidation": "Does not contain a series of numbers (123). (PT-BR)",
+      "PINOnlyContainDigitsValidation": "Must contain only digits. (PT-BR)",
+      "PINTooShortValidation": "The PIN is long enought. (PT-BR)",
+      "PINTooLongValidation": "The PIN is long enought. (PT-BR)",
+    },
     "UserAuthenticationPIN": "PIN de autenticação do usuário",
     "PINTooShort": "PIN é curto demais",
     "InvalidPIN": "PIN inválido",
@@ -96,13 +116,13 @@ const translation = {
     "CreatePIN": "Criar PIN",
     "RememberPIN": "Lembre-se do seu PIN.",
     "PINDisclaimer": "Se você o esquecer, você precisará redefinir sua carteira e readicionar seus cards.",
-    "Show": "Mostrar",
-    "Hide": "Esconder",
+    "Show": "Mostrar PIN",
+    "Hide": "Esconder PIN",
     "ChangePIN": "Alterar PIN",
     "Continue": "Continuar",
     "EnterYourCurrentPIN": "Digite seu PIN atual."
   },
-  "PinEnter": {
+  "PINEnter": {
     "EnterPIN": "Digitar PIN",
     "Unlock":"Destravar",
     "Or":"Ou",
@@ -258,7 +278,7 @@ const translation = {
     "AboutApp": "Sobre o App",
     "Language": "Idioma",
     "WhatAreContacts": "O que são Contatos?",
-    "Developer": "Desenvolvedor"
+    "Developer": "Developer options"
   },
   "TabStack": {
     "Home": "Home",
@@ -281,27 +301,27 @@ const translation = {
     "Hidden": "Escondido"
   },
   "Screens": {
-    "Splash": 'Splash',
+    "Splash": "Splash",
     "Onboarding": "Onboarding",
     "Terms": "Termos & Condições",
-    "CreatePin": 'Criar um PIN',
-    "EnterPin": 'Digitar o PIN',
-    "Home": 'Home',
-    "Scan": 'Scanear',
-    "Credentials": 'Credenciais',
-    "CredentialDetails": 'Detalhes de Credencial',
-    "Notifications": 'Notificações',
-    "CredentialOffer": 'Oferta de Credencial',
-    "ProofRequest": 'Requisição de Prova',
-    "ProofRequestAttributeDetails": 'Atributos de Requisição de Prova',
-    "Settings": 'Configurações',
-    "Language": 'Idioma',
-    "Contacts": 'Contatos',
+    "CreatePIN": "Criar um PIN",
+    "EnterPIN": "Digitar o PIN",
+    "Home": "Home",
+    "Scan": "Scanear",
+    "Credentials": "Credenciais",
+    "CredentialDetails": "Detalhes de Credencial",
+    "Notifications": "Notificações",
+    "CredentialOffer": "Oferta de Credencial",
+    "ProofRequest": "Requisição de Prova",
+    "ProofRequestAttributeDetails": "Atributos de Requisição de Prova",
+    "Settings": "Configurações",
+    "Language": "Idioma",
+    "Contacts": "Contatos",
     "Decline": "Recusar",
-    "ContactDetails": 'Detalhes do Contato',
+    "ContactDetails": "Detalhes do Contato",
     "Biometry": "Biometria",
-    "Developer": "Desenvolvedor",
-    "ChangePin": "Alterar PIN"
+    "Developer": "Developer options",
+    "ChangePIN": "Alterar PIN"
   },
   "Loading": {
     "TakingTooLong": "Isso esta demorando mais que o normal. Você pode voltar para a home ou continuar esperando.",
@@ -309,7 +329,9 @@ const translation = {
   },
   "NetInfo": {
     "NoInternetConnectionTitle": "Sem conexão com a internet",
-    "NoInternetConnectionMessage": "Não é possivel acessar serviços utilizando a Bifold ou receber credenciais até você voltar a estar online.\n\nFavor checkar sua conexão com a internet."
+    "NoInternetConnectionMessage": "Não é possivel acessar serviços utilizando a Bifold ou receber credenciais até você voltar a estar online.\n\nFavor checkar sua conexão com a internet.",
+    "LedgerConnectivityIssueTitle": "Wallet Services (pt-BR)",
+    "LedgerConnectivityIssueMessage": "A firewall may be preventing you from connecting to wallet related services. (pt-BR)", 
   }
 }
 
