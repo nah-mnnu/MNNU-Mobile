@@ -1,7 +1,7 @@
 // prettier-ignore
 const translation = {
   "Global": {
-    "EnterPin": "Voer Pin-code in",
+    "EnterPIN": "Voer Pin-code in",
     "6DigitPin": "6-cijferige pincode",
     "Submit": "Invoeren",
     "NoneYet!": "Nog niks!",
@@ -176,8 +176,8 @@ const translation = {
     "Splash": 'Splash',
     "Onboarding": "Onboarding",
     "Terms": "algemene voorwaarden",
-    "CreatePin": '6-cijferige pin maken',
-    "EnterPin": 'Voer Pincode in',
+    "CreatePIN": '6-cijferige pin maken',
+    "EnterPIN": 'Voer Pincode in',
     "Home": 'Home',
     "Scan": 'Scan',
     "Credentials": 'Credentials',
