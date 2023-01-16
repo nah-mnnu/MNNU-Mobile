@@ -26,6 +26,9 @@ const translation = {
     "ErrorCode": "Foutcode",
     "Okay": "Oké",
     "GoBack": "Ga terug",
+    "Biometrics": "Biometrie",
+    "On" : "Aan",
+    "Off": "Uit",
     "Intro": {
       "Welcome": "Welkom bij de patiënten app van het MNNU!",
       "Continue": "Swipe om door te gaan!",
@@ -59,10 +62,16 @@ const translation = {
     "PinsEnteredDoNotMatch": "Ingevoerde pincode komt niet overeen",
     "6DigitPin": "6-cijferige pincode",
     "ReenterPin": "Voer pincode opnieuw in",
-    "Create": "Aanmaken"
+    "CreatePIN": "Aanmaken"
   },
   "PinEnter": {
     "IncorrectPin": "Onjuiste pincode",
+    "Unlock": "Ontgrendelen",
+    "BiometricsUnlock": "Ontgrendelen met biometrie",
+  },
+  "Biometry": {
+    "UnlockPromptTitle": "Wallet ontgrendelen",
+    "UnlockPromptDescription": "Gebruik biometrie om de wallet te ontgrendelen"
   },
   "ContactDetails": {
     "Created": "Aangemaakt",
@@ -148,9 +157,11 @@ const translation = {
   "Settings": {
     "Version": "Versie",
     "VersionString": "0.0.1-0",
+    "AppSettings": "App instellingen",
     "AppPreferences": "App-voorkeuren",
     "AboutApp": "Over de app",
     "Language": "Taal",
+    "WhatAreContacts": "Wat zijn contacten?",
   },
   "TabStack": {
     "Home": "Home",
@@ -175,7 +186,7 @@ const translation = {
   "Screens": {
     "Splash": 'Splash',
     "Onboarding": "Onboarding",
-    "Terms": "algemene voorwaarden",
+    "Terms": "Algemene voorwaarden",
     "CreatePIN": '6-cijferige pin maken',
     "EnterPIN": 'Voer Pincode in',
     "Home": 'Home',
@@ -190,6 +201,7 @@ const translation = {
     "Language": 'Taal',
     "Contacts": 'Contacten',
     "ContactDetails": 'Contact Details',
+    "Biometry": "Biometrie",
   },
   "Loading": {
     "TakingTooLong": "Dit duurt langer dan normaal. U kunt naar home terugkeren of blijven wachten.",
