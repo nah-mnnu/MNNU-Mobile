@@ -25,18 +25,26 @@ const translation = {
     "ErrorCode": "Error Code",
     "Okay": "Okay",
     "GoBack": "Go Back",
-    "GetStarted": "Get Started",
     "Dismiss": "Dismiss",
     "ShowDetails": "Show Details",
     "TryAgain": "Try Again",
     "Biometrics": "Biometrics",
     "On" : "On",
     "Off": "Off",
+    "Intro": {
+      "Welcome": "Welcome to the patient app of the MNNU!",
+      "Continue": "Swipe to continue!",
+      "Info1": "This app has been created for easy control of your data",
+      "Info2": "You can also accept requests of healthcare providers so that you can be helped in a safe way",
+      "LetsGetStarted": "Let's get started!",
+      "GetStarted": "Get Started",
+    },
   },
   "Language": {
     "English": "English",
     "French": "French",
     "Portuguese": "Portuguese",
+    "Dutch": "Dutch"
   },
   "Error": {
     "Unknown": "Unknown Error",

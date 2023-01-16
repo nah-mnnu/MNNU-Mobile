@@ -1,16 +1,16 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { SvgProps } from 'react-native-svg'
-
-import CredentialList from '../assets/img/credential-list.svg'
-import ScanShare from '../assets/img/scan-share.svg'
-import SecureImage from '../assets/img/secure-image.svg'
-import Button, { ButtonType } from '../components/buttons/Button'
-import { GenericFn } from '../types/fn'
-import { testIdWithKey } from '../utils/testable'
-
-import { OnboardingStyleSheet } from './Onboarding'
+import {useTranslation} from 'react-i18next'
+import {ScrollView, StyleSheet, Text, View} from 'react-native'
+import {SvgProps} from 'react-native-svg'
+import Button, {ButtonType} from '../components/buttons/Button'
+import {GenericFn} from '../types/fn'
+import {testIdWithKey} from '../utils/testable'
+import LanguageListItem from '../components/listItems/LanguageListItem'
+import {Theme} from '../theme'
+import Begin from '../assets/img/MNNU/begin.svg'
+import Request from '../assets/img/MNNU/request.svg'
+import Opening from '../assets/img/MNNU/opening.svg'
+import {OnboardingStyleSheet} from './Onboarding'
 
 export const createCarouselStyle = (OnboardingTheme: any): OnboardingStyleSheet => {
   return StyleSheet.create({
@@ -56,10 +56,12 @@ export const createStyles = (OnboardingTheme: any) => {
   return StyleSheet.create({
     headerText: {
       ...OnboardingTheme.headerText,
+      textAlign: 'center',
     },
     bodyText: {
       ...OnboardingTheme.bodyText,
       flexShrink: 1,
+      textAlign: 'center',
     },
     point: {
       flexDirection: 'row',
@@ -78,35 +80,30 @@ export const createStyles = (OnboardingTheme: any) => {
 const createImageDisplayOptions = (OnboardingTheme: any) => {
   return {
     ...OnboardingTheme.imageDisplayOptions,
-    height: 180,
-    width: 180,
+    height: 300,
+    width: 300,
   }
 }
 
 const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
-  const { t } = useTranslation()
   const styles = createStyles(OnboardingTheme)
   const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
+  const {t} = useTranslation()
+
   return (
     <>
-      <ScrollView style={{ padding: 20 }}>
-        <View style={{ alignItems: 'center' }}>
-          <SecureImage {...imageDisplayOptions} />
-        </View>
-        <View style={{ marginBottom: 20 }}>
-          <Text style={[styles.headerText, { fontSize: 18 }]} testID={testIdWithKey('HeaderText')}>
-            Ornare suspendisse sed nisi lacus
-          </Text>
-          <Text style={[styles.bodyText, { marginTop: 25 }]} testID={testIdWithKey('BodyText')}>
-            Enim facilisis gravida neque convallis a cras semper. Suscipit adipiscing bibendum est ultricies integer
-            quis auctor elit sed.
-          </Text>
+      <ScrollView style={{padding: 20}}>
+        <View style={{marginLeft: 20, marginRight: 20, marginTop: 100}}>
+          <Text style={[styles.headerText, {fontSize: 30}]}>{t('Global.Intro.LetsGetStarted')}</Text>
+          <View style={{alignItems: 'center'}}>
+            <Opening {...imageDisplayOptions} />
+          </View>
         </View>
       </ScrollView>
-      <View style={{ marginTop: 'auto', margin: 20 }}>
+      <View style={{marginTop: 'auto', margin: 20}}>
         <Button
-          title={t('Global.GetStarted')}
-          accessibilityLabel={t('Global.GetStarted')}
+          title={t('Global.Intro.GetStarted')}
+          accessibilityLabel={t('Global.Intro.GetStarted')}
           testID={testIdWithKey('GetStarted')}
           onPress={onTutorialCompleted}
           buttonType={ButtonType.Primary}
@@ -116,30 +113,31 @@ const customPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any) => {
   )
 }
 
-const guides: Array<{ image: React.FC<SvgProps>; title: string; body: string }> = [
-  {
-    image: CredentialList,
-    title: 'Lorem ipsum dolor sit amet',
-    body: 'Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus.',
-  },
-  {
-    image: ScanShare,
-    title: 'Excepteur sint occaecat ',
-    body: 'Mollis aliquam ut porttitor leo a diam sollicitudin tempor.',
-  },
-]
+const languagePage = (theme: Theme) => {
+  const defaultStyle = createStyles(theme)
+  return (
+    <>
+      <View style={{marginLeft: 20, marginRight: 20, marginTop: 100}}>
+        <Text style={[defaultStyle.headerText, {fontSize: 18}]}>Choose language / Kies taal</Text>
+        <Text style={[defaultStyle.bodyText, {marginTop: 20}]}>
+          <LanguageListItem/>
+        </Text>
+      </View>
+    </>
+  )
+}
 
 const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, OnboardingTheme: any) => {
   const styles = createStyles(OnboardingTheme)
   const imageDisplayOptions = createImageDisplayOptions(OnboardingTheme)
   return (
-    <ScrollView style={{ padding: 20 }}>
-      <View style={{ alignItems: 'center' }}>{image(imageDisplayOptions)}</View>
-      <View style={{ marginBottom: 20 }}>
-        <Text style={[styles.headerText, { fontSize: 18 }]} testID={testIdWithKey('HeaderText')}>
+    <ScrollView style={{padding: 20}}>
+      <View style={{marginLeft: 20, marginRight: 20, marginTop: 100}}>
+        <Text style={[styles.headerText, {fontSize: 18}]} testID={testIdWithKey('HeaderText')}>
           {title}
         </Text>
-        <Text style={[styles.bodyText, { marginTop: 25 }]} testID={testIdWithKey('BodyText')}>
+        <View style={{alignItems: 'center'}}>{image(imageDisplayOptions)}</View>
+        <Text style={[styles.bodyText, {marginTop: 25}]} testID={testIdWithKey('BodyText')}>
           {body}
         </Text>
       </View>
@@ -148,7 +146,23 @@ const createPageWith = (image: React.FC<SvgProps>, title: string, body: string, 
 }
 
 const OnboardingPages = (onTutorialCompleted: GenericFn, OnboardingTheme: any): Array<Element> => {
+  const {t} = useTranslation()
+  
+  const guides: Array<{ image: React.FC<SvgProps>; title: any; body: string }> = [
+    {
+      image: Begin,
+      title: t('Global.Intro.Welcome'),
+      body: t('Global.Intro.Continue'),
+    },
+    {
+      image: Request,
+      title: t('Global.Intro.Info1'),
+      body: t('Global.Intro.Info2')
+    },
+  ]
+
   return [
+    languagePage(OnboardingTheme),
     ...guides.map((g) => createPageWith(g.image, g.title, g.body, OnboardingTheme)),
     customPages(onTutorialCompleted, OnboardingTheme),
   ]

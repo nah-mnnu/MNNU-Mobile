@@ -18,7 +18,7 @@ interface Props {
 
 const SingleSelectBlock: React.FC<Props> = ({ selection, onSelect, initialSelect }) => {
   const [selected, setSelected] = useState(initialSelect ?? selection[0])
-  const { Inputs } = useTheme()
+  const { Inputs, ColorPallet } = useTheme()
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -30,6 +30,10 @@ const SingleSelectBlock: React.FC<Props> = ({ selection, onSelect, initialSelect
       alignItems: 'center',
       justifyContent: 'space-between',
       marginBottom: 8,
+    },
+    button: {
+      color: ColorPallet.notification.buttonText,
+      fontWeight: 'bold'
     },
   })
   const handleSelect = (selected: BlockSelection) => {
