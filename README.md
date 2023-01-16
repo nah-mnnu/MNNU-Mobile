@@ -65,7 +65,7 @@ In the app directory add an `.env` file containing:
 MEDIATOR_URL=
 ```
 
-Note - You can find the Animo Mediator URL in the MNNU-Docs repository
+Note - You can find the Animo Mediator URL in the MNNU-Docs repository or click [here](https://github.com/nah-mnnu/MNNU-Docs/blob/master/Docs/General/mediator_agent.md)
 
 ## Run
 
