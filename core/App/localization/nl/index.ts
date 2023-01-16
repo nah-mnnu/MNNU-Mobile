@@ -56,7 +56,7 @@ const translation = {
     "IAgree": "Ik ga akkoord",
     "Attestation": "Ik heb de algemene voorwaarden gelezen, begrepen en aanvaard.",
   },
-  "PinCreate": {
+  "PINCreate": {
     "UserAuthenticationPin": "Pincode voor gebruikersverificatie",
     "PinMustBe6DigitsInLength": "Pincode moet 6 cijfers lang zijn",
     "PinsEnteredDoNotMatch": "Ingevoerde pincode komt niet overeen",
@@ -64,8 +64,8 @@ const translation = {
     "ReenterPin": "Voer pincode opnieuw in",
     "CreatePIN": "Aanmaken"
   },
-  "PinEnter": {
-    "IncorrectPin": "Onjuiste pincode",
+  "PINEnter": {
+    "IncorrectPIN": "Onjuiste pincode",
     "Unlock": "Ontgrendelen",
     "BiometricsUnlock": "Ontgrendelen met biometrie",
   },

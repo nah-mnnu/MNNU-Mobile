@@ -148,6 +148,7 @@ const NotificationColors: NotificationColors = {
   info: '#313132',
   infoBorder: '#0099FF',
   infoIcon: '#0099FF',
+  infoTextBlue: '#1467b3',
   infoText: '#000000',
   buttonText: '#ffffff',
   warn: '#313132',
@@ -462,7 +463,7 @@ export const HomeTheme = StyleSheet.create({
   },
   noNewUpdatesText: {
     ...TextTheme.normal,
-    color: ColorPallet.notification.infoText,
+    color: ColorPallet.notification.infoTextBlue,
   },
   link: {
     ...TextTheme.normal,
