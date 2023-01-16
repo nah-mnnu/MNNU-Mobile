@@ -7,7 +7,6 @@ import * as RNLocalize from 'react-native-localize'
 import { defaultLanguage } from '../constants'
 
 import en from './en'
-import fr from './fr'
 import nl from './nl'
 
 export type Translation = typeof en
@@ -20,12 +19,6 @@ export const translationResources: TranslationResources = {
   en: {
     translation: en,
   },
-//   fr: {
-//     translation: fr,
-//   },
-//   'pt-BR': {
-//     translation: ptBr,
-//   },
   nl: {
     translation: nl,
   },
@@ -33,8 +26,6 @@ export const translationResources: TranslationResources = {
 
 export enum Locales {
   en = 'en',
-//   fr = 'fr',
-//   ptBr = 'pt-BR',
   nl = 'nl',
 }
 
