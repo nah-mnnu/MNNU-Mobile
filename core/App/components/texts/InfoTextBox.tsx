@@ -27,7 +27,7 @@ const InfoTextBox: React.FC<TextBoxProps> = ({ children }) => {
     },
     textContainer: {
       ...TextTheme.normal,
-      color: ColorPallet.notification.infoText,
+      color: ColorPallet.notification.infoTextBlue,
       fontWeight: 'bold',
       alignSelf: 'center',
       flexShrink: 1,
