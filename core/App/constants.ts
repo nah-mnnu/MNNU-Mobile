@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 export const defaultLanguage = 'nl'
+=======
+import { PINValidationRules } from './types/security'
+export const defaultLanguage = 'nl'
+
+>>>>>>> 88e07d76926657176a119cfb5ddb993bf7192548
 export const dateIntFormat = 'YYYYMMDD'
 export const lengthOfhiddenAttributes = 10
 
